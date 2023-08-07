@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FofiNotesApp</string>
+    <string name="my_notes">Mis notas</string>
+    <string name="add_content_description">add</string>
+    <string name="profile_content_description">profile</string>
+    <string name="add_Category_inspire">Recuerda escribir algo que te inspire!</string>
+    <string name="add_category_name">Nombre de la categoria</string>
+    <string name="add_category_description">Escribe aqui como defines tu nueva categoria</string>
+    <string name="done">Done</string>
+    <string name="back">Back</string>
+</resources>
