@@ -163,9 +163,3 @@ fun AddCategoryContent(viewModel: AddCategoryViewModel, onPopUp: () -> Unit) {
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun AddCategoryContentPreview() {
-    /*    AddCategoryContent()*/
-}
