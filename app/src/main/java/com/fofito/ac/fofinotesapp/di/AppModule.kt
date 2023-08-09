@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import com.fofito.ac.fofinotesapp.data.local.NotesDatabase
 import com.fofito.ac.fofinotesapp.data.local.dao.CategoryDao
+import com.fofito.ac.fofinotesapp.domain.typeconverter.AppConverters
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +22,7 @@ object AppModule {
             context = application,
             name = "notes_db",
             klass = NotesDatabase::class.java
-        ).build()
+        ).addTypeConverter(AppConverters()).build()
     }
 
     @Provides

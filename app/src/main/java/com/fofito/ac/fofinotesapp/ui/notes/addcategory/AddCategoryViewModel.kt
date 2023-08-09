@@ -2,16 +2,22 @@ package com.fofito.ac.fofinotesapp.ui.notes.addcategory
 
 import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.fofito.ac.fofinotesapp.R
 import com.fofito.ac.fofinotesapp.domain.models.ImageCategory
+import com.fofito.ac.fofinotesapp.domain.models.NoteCategory
+import com.fofito.ac.fofinotesapp.domain.usecase.addcategory.AddCategoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddCategoryViewModel @Inject constructor() : ViewModel() {
+class AddCategoryViewModel @Inject constructor(
+    val addCategoryUseCase: AddCategoryUseCase
+) : ViewModel() {
 
     private var _addCategoryUiState = MutableStateFlow(AddCategoryUiState())
     val addCategoryUiState = _addCategoryUiState.asStateFlow()
@@ -29,10 +35,18 @@ class AddCategoryViewModel @Inject constructor() : ViewModel() {
     }
 
     fun addCategory(name: String, description: String, imageCategory: ImageCategory? = null) {
-
+        viewModelScope.launch {
+            addCategoryUseCase(
+                NoteCategory(
+                    name = name,
+                    description = description,
+                    imageInfo = imageCategory
+                )
+            )
+        }
     }
 
-    private val _categories = listOf(
+    private val _imageCategories = listOf(
         ImageCategory(id = 0, image = R.drawable.category_success, isSelected = false),
         ImageCategory(id = 1, image = R.drawable.category_plants, isSelected = false),
         ImageCategory(id = 2, image = R.drawable.category_relax, isSelected = false),
@@ -42,9 +56,8 @@ class AddCategoryViewModel @Inject constructor() : ViewModel() {
         ImageCategory(id = 6, image = R.drawable.category_long_period, isSelected = false),
         ImageCategory(id = 7, image = R.drawable.category_morning_pages, isSelected = false),
     ).toMutableStateList()
-    val options: List<ImageCategory>
-        get() = _categories
-
+    val imageCategories: List<ImageCategory>
+        get() = _imageCategories
 }
 
 data class AddCategoryUiState(

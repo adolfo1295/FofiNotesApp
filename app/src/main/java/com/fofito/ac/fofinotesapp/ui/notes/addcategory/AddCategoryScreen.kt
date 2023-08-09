@@ -9,9 +9,3 @@ fun AddCategoryScreen(onPopUp: () -> Unit) {
     val viewModel: AddCategoryViewModel = hiltViewModel()
     AddCategoryContent(viewModel = viewModel, onPopUp = onPopUp)
 }
-
-@Preview(showBackground = true)
-@Composable
-fun AddCategoryScreenPreview() {
-    AddCategoryScreen(onPopUp = {})
-}

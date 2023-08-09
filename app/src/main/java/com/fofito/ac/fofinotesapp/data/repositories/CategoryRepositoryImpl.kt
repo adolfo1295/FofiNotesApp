@@ -1,25 +1,28 @@
 package com.fofito.ac.fofinotesapp.data.repositories
 
 import com.fofito.ac.fofinotesapp.data.local.dao.CategoryDao
-import com.fofito.ac.fofinotesapp.data.local.entities.CategoryEntity
+import com.fofito.ac.fofinotesapp.data.local.entities.categories.CategoryEntity
+import com.fofito.ac.fofinotesapp.data.local.entities.relations.CategoryWithNotes
 import com.fofito.ac.fofinotesapp.domain.repositories.CategoryRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class CategoryRepositoryImpl @Inject constructor(
-    dao: CategoryDao
+    private val dao: CategoryDao
 ) : CategoryRepository {
     override suspend fun addCategory(categoryEntity: CategoryEntity) {
-        TODO("Not yet implemented")
+        dao.upsertCategory(categoryEntity)
     }
 
     override suspend fun deleteCategory(categoryEntity: CategoryEntity) {
-        TODO("Not yet implemented")
+        dao.deleteCategory(categoryEntity)
     }
 
     override fun getAllCategories(): Flow<List<CategoryEntity>> {
-        TODO("Not yet implemented")
+        return dao.getAllCategories()
     }
 
-
+    override fun getAllNotesByCategory(categoryName: String): Flow<List<CategoryWithNotes>> {
+        TODO()
+    }
 }

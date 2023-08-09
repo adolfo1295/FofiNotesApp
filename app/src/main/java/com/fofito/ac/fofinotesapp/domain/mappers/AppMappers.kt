@@ -21,6 +21,8 @@ import com.fofito.ac.fofinotesapp.utils.ColorConstants.GREEN
 import com.fofito.ac.fofinotesapp.utils.ColorConstants.PINK
 import com.fofito.ac.fofinotesapp.utils.ColorConstants.SKY
 import com.fofito.ac.fofinotesapp.utils.ColorConstants.YELLOW
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 fun String.toNoteColor(): Color {
     return when (this) {
@@ -77,3 +79,6 @@ fun String.toCategoryColor(): Color {
         }
     }
 }
+
+inline fun <reified T> Gson.fromJson(json: String) =
+    fromJson<T>(json, object : TypeToken<T>() {}.type)
