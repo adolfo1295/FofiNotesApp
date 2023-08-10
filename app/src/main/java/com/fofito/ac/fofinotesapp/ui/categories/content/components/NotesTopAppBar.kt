@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.fofito.ac.fofinotesapp.ui.notes.content.components
+package com.fofito.ac.fofinotesapp.ui.categories.content.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -17,7 +17,7 @@ import androidx.compose.ui.res.stringResource
 import com.fofito.ac.fofinotesapp.R
 
 @Composable
-fun NotesTopAppBar(onAddIconClick: () -> Unit) {
+fun NotesTopAppBar(onAddIconClick: () -> Unit, openProfile: () -> Unit) {
     CenterAlignedTopAppBar(
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primary,
@@ -27,7 +27,9 @@ fun NotesTopAppBar(onAddIconClick: () -> Unit) {
             navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
         ),
         navigationIcon = {
-            IconButton(onClick = { }) {
+            IconButton(onClick = {
+                openProfile()
+            }) {
                 Icon(
                     imageVector = Icons.Default.Person, contentDescription = stringResource(
                         R.string.profile_content_description

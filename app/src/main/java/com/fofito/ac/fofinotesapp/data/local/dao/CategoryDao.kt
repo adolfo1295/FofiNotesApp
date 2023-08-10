@@ -41,4 +41,11 @@ interface CategoryDao {
     )
     fun getAllCategories(): Flow<List<CategoryEntity>>
 
+    @Transaction
+    @Query("SELECT * FROM categoryentity")
+    fun getUsersWithPlaylists(): Flow<List<CategoryWithNotes>>
+
+    @Upsert
+    suspend fun addNote(noteEntity: NoteEntity)
+
 }

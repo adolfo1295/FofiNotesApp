@@ -12,20 +12,6 @@ import java.time.ZonedDateTime
 class AppConverters {
 
     @TypeConverter
-    fun fromZonedTimeToString(zonedDateTime: ZonedDateTime): String {
-        return Gson().toJson(zonedDateTime)
-    }
-
-    @TypeConverter
-    fun toZonedDateTime(value: String): ZonedDateTime {
-        return try {
-            Gson().fromJson<ZonedDateTime>(value)
-        } catch (e: Exception) {
-            ZonedDateTime.now()
-        }
-    }
-
-    @TypeConverter
     fun fromImageCategoryToString(imageCategory: ImageCategory): String {
         return Gson().toJson(imageCategory)
     }

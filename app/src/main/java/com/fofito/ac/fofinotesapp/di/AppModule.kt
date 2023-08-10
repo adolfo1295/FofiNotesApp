@@ -20,7 +20,7 @@ object AppModule {
     fun providesNotesDatabase(application: Application): NotesDatabase {
         return Room.databaseBuilder(
             context = application,
-            name = "notes_db",
+            name = "notes.db",
             klass = NotesDatabase::class.java
         ).addTypeConverter(AppConverters()).build()
     }

@@ -1,7 +1,6 @@
-package com.fofito.ac.fofinotesapp.ui.notes.addcategory
+package com.fofito.ac.fofinotesapp.ui.categories.addcategory
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable

@@ -17,9 +17,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             FofiNotesAppTheme {
-
                 val navController = rememberNavController()
-
                 NotesNavigation(navController = navController)
             }
         }

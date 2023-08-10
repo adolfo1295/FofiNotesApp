@@ -1,4 +1,4 @@
-package com.fofito.ac.fofinotesapp.ui.notes.content.components
+package com.fofito.ac.fofinotesapp.ui.categories.content.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,14 +24,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.fofito.ac.fofinotesapp.data.local.entities.relations.CategoryWithNotes
 import com.fofito.ac.fofinotesapp.domain.mappers.toCategoryColor
+import com.fofito.ac.fofinotesapp.domain.mappers.totoNoteCategoryUi
 import com.fofito.ac.fofinotesapp.domain.models.NoteCategory
 import com.fofito.ac.fofinotesapp.theme.theme.category_blue_0
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CategoryItem(
-    noteCategory: NoteCategory,
+    noteCategory: CategoryWithNotes,
     onCategoryClick: (NoteCategory) -> Unit
 ) {
     Card(
@@ -39,11 +41,11 @@ fun CategoryItem(
             .fillMaxWidth()
             .fillMaxSize(0.85f),
         colors = CardDefaults.cardColors(
-            containerColor = noteCategory.color?.toCategoryColor() ?: category_blue_0,
+            containerColor = noteCategory.category.color.toCategoryColor(),
             contentColor = Color.Black
         ),
         onClick = {
-            onCategoryClick(noteCategory)
+            onCategoryClick(noteCategory.category.totoNoteCategoryUi())
         }) {
         Column(
             horizontalAlignment = Alignment.Start,
@@ -55,7 +57,7 @@ fun CategoryItem(
             ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(0.6f),
-                    text = noteCategory.name,
+                    text = noteCategory.category.categoryName,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     fontSize = 32.sp
@@ -63,13 +65,13 @@ fun CategoryItem(
                 AsyncImage(
                     modifier = Modifier.size(100.dp),
                     contentScale = ContentScale.Crop,
-                    model = noteCategory.imageInfo?.image,
+                    model = noteCategory.category.imageInfo.image,
                     contentDescription = "icon"
                 )
             }
             Spacer(modifier = Modifier.height(10.dp))
             Text(
-                text = noteCategory.description,
+                text = noteCategory.category.description,
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Light,
                 fontSize = 24.sp
@@ -89,6 +91,11 @@ fun CategoryItem(
                         text = noteCategory.notes.count().toString(),
                         style = MaterialTheme.typography.titleLarge,
                         fontSize = 48.sp
+                    )
+                    Text(
+                        text = if (noteCategory.notes.count() == 1) "Nota" else "Notas",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontSize = 20.sp
                     )
                 }
             }

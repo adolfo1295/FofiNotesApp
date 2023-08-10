@@ -2,6 +2,7 @@ package com.fofito.ac.fofinotesapp.data.repositories
 
 import com.fofito.ac.fofinotesapp.data.local.dao.CategoryDao
 import com.fofito.ac.fofinotesapp.data.local.entities.categories.CategoryEntity
+import com.fofito.ac.fofinotesapp.data.local.entities.notes.NoteEntity
 import com.fofito.ac.fofinotesapp.data.local.entities.relations.CategoryWithNotes
 import com.fofito.ac.fofinotesapp.domain.repositories.CategoryRepository
 import kotlinx.coroutines.flow.Flow
@@ -22,7 +23,11 @@ class CategoryRepositoryImpl @Inject constructor(
         return dao.getAllCategories()
     }
 
-    override fun getAllNotesByCategory(categoryName: String): Flow<List<CategoryWithNotes>> {
-        TODO()
+    override fun getAllNotesByCategory(): Flow<List<CategoryWithNotes>> {
+        return dao.getUsersWithPlaylists()
+    }
+
+    override suspend fun addNote(noteEntity: NoteEntity) {
+        dao.addNote(noteEntity)
     }
 }

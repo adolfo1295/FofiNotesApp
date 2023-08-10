@@ -1,4 +1,4 @@
-package com.fofito.ac.fofinotesapp.ui.notes.addcategory.components
+package com.fofito.ac.fofinotesapp.ui.categories.addcategory.components
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size

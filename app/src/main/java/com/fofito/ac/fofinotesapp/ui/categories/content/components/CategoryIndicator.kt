@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalFoundationApi::class)
 
-package com.fofito.ac.fofinotesapp.ui.notes.content.components
+package com.fofito.ac.fofinotesapp.ui.categories.content.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -20,12 +20,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.fofito.ac.fofinotesapp.data.local.entities.relations.CategoryWithNotes
 import com.fofito.ac.fofinotesapp.domain.models.NoteCategory
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Indicator(
-    categories: List<NoteCategory>,
+    categories: List<CategoryWithNotes>,
     pagerState: PagerState
 ) {
     Box(modifier = Modifier.fillMaxWidth()) {
@@ -46,33 +47,4 @@ fun Indicator(
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun IndicatorPreview() {
-    val notesCategories = arrayListOf<NoteCategory>(
-        NoteCategory(
-            name = "Notas personales",
-            description = "Este espacio es para notas personales"
-        ),
-        NoteCategory(
-            name = "Morning pages",
-            description = "Este espacio es para morning pages"
-        ),
-        NoteCategory(
-            name = "Corto plazo",
-            description = "Este espacio es para metas a corto plazo"
-        ),
-        NoteCategory(
-            name = "Largo plazo",
-            description = "Este espacio es para metas a largo plazo"
-        ),
-        NoteCategory(
-            name = "Metas de año nuevo",
-            description = "Este espacio es para metas de año nuevo"
-        ),
-    )
-    val pagerState = rememberPagerState(initialPage = 0)
-    Indicator(categories = notesCategories, pagerState = pagerState)
 }

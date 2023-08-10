@@ -1,4 +1,4 @@
-package com.fofito.ac.fofinotesapp.ui.notes.addcategory
+package com.fofito.ac.fofinotesapp.ui.categories.addcategory
 
 import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
@@ -43,6 +43,7 @@ class AddCategoryViewModel @Inject constructor(
                     imageInfo = imageCategory
                 )
             )
+            _addCategoryUiState.update { it.copy(onSuccess = true) }
         }
     }
 

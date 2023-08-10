@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.fofito.ac.fofinotesapp.ui.notes.content
+package com.fofito.ac.fofinotesapp.ui.categories.content
 
 import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -26,18 +26,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.fofito.ac.fofinotesapp.domain.models.NoteCategory
+import com.fofito.ac.fofinotesapp.data.local.entities.relations.CategoryWithNotes
 import com.fofito.ac.fofinotesapp.domain.startOffsetForPage
-import com.fofito.ac.fofinotesapp.ui.notes.content.components.CategoryItem
-import com.fofito.ac.fofinotesapp.ui.notes.content.components.EmptyCategoriesComponent
-import com.fofito.ac.fofinotesapp.ui.notes.content.components.Indicator
-import com.fofito.ac.fofinotesapp.ui.notes.content.components.NotesTopAppBar
+import com.fofito.ac.fofinotesapp.ui.categories.content.components.CategoryItem
+import com.fofito.ac.fofinotesapp.ui.categories.content.components.EmptyCategoriesComponent
+import com.fofito.ac.fofinotesapp.ui.categories.content.components.Indicator
+import com.fofito.ac.fofinotesapp.ui.categories.content.components.NotesTopAppBar
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CategoriesScreenContent(
-    categories: List<NoteCategory>,
-    onAddCategory: () -> Unit
+    categories: List<CategoryWithNotes>,
+    onAddCategory: () -> Unit,
+    openProfile: () -> Unit
 ) {
 
     Scaffold(
@@ -45,7 +46,7 @@ fun CategoriesScreenContent(
             .statusBarsPadding()
             .navigationBarsPadding(),
         topBar = {
-            NotesTopAppBar(onAddIconClick = onAddCategory)
+            NotesTopAppBar(onAddIconClick = onAddCategory, openProfile = openProfile)
         }
     ) { paddingValues ->
 

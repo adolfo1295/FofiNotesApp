@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalComposeUiApi::class)
 
-package com.fofito.ac.fofinotesapp.ui.notes.addcategory
+package com.fofito.ac.fofinotesapp.ui.categories.addcategory
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -31,6 +31,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -47,14 +48,20 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.fofito.ac.fofinotesapp.R
-import com.fofito.ac.fofinotesapp.ui.notes.addcategory.components.ImageCategoryItem
+import com.fofito.ac.fofinotesapp.ui.categories.addcategory.components.ImageCategoryItem
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun AddCategoryContent(viewModel: AddCategoryViewModel, onPopUp: () -> Unit) {
 
     val addCategoryUiState by viewModel.addCategoryUiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
+
+    LaunchedEffect(key1 = addCategoryUiState.onSuccess) {
+        if (addCategoryUiState.onSuccess) {
+            onPopUp()
+        }
+    }
 
     Scaffold(
         modifier = Modifier
@@ -140,7 +147,7 @@ fun AddCategoryContent(viewModel: AddCategoryViewModel, onPopUp: () -> Unit) {
                     text = "Imagen"
                 )
                 Spacer(modifier = Modifier.height(5.dp))
-                var selectedIndex by remember{
+                var selectedIndex by remember {
                     mutableStateOf(0)
                 }
                 LazyRow(

@@ -1,4 +1,4 @@
-package com.fofito.ac.fofinotesapp.ui.notes.content.components
+package com.fofito.ac.fofinotesapp.ui.categories.content.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

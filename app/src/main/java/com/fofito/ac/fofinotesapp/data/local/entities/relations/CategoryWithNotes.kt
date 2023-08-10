@@ -12,9 +12,7 @@ data class CategoryWithNotes(
     @Embedded val category: CategoryEntity,
     @Relation(
         parentColumn = "categoryName",
-        entityColumn = "categoryName",
-
-        )
-    @TypeConverters(AppConverters::class)
+        entityColumn = "noteCategoryName"
+    )
     val notes: List<NoteEntity>
 )
